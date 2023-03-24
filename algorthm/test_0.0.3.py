@@ -28,6 +28,7 @@ def search(m, n, k, j, s):
 
     print("========final result===========")
     print(combination)
+    print(len(combination))
 
 if __name__ == '__main__':
     search(45, 9, 6, 4, 4)
