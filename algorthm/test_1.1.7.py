@@ -18,13 +18,32 @@ def combine(choosen_letter, n, k,s):
             # temp = head_letters.append(tc)
             combination.append(head_letters + list(tc))
         print(combination)
+    print("========final result===========")
+    print(combination)
+    print(len(combination))
     return combination
 
-def select(combination, choosen_letter,j,s):
-    tmp_sets = list(itertools.combinations(choosen_letter, j))
-    validation_sets = list(itertools.combinations(tmp_sets, s))
-    print(len(validation_sets))
+def select(combinations, choosen_letter,j,s):
 
+    valid_combinations = []
+    tmp_sets = sample(choosen_letter, j)
+    tmp_sets.sort()
+    # tmp_sets = list(itertools.combinations(choosen_letter, j))
+    validation_sets = list(itertools.combinations(tmp_sets, s))
+    print(validation_sets)
+    print(len(validation_sets))
+    combinations.reverse()
+    for combination in combinations:
+        if validation_sets is None:
+            break
+        for validation_set in validation_sets:
+            if set(validation_set).issubset(set(combination)):
+
+                valid_combinations.append(combination)
+                validation_sets = [s for s in validation_sets if not set(s).issubset(set(combination))]
+                break
+    print(valid_combinations)
+    print(len(valid_combinations))
 
 def search(m, n, k, j, s):
     potential_letter = list(x for x in range(m))
@@ -32,15 +51,13 @@ def search(m, n, k, j, s):
     # choosen_letter.sort()
 
     # choosen_letter = list(x for x in range(n)) # test
-    choosen_letter = ['A', 'B', 'C', 'D', 'E', 'F', 'G', "H", "I"]  # test
+    choosen_letter = ['A', 'B', 'C', 'D', 'E', 'F', 'G', "H", "I", "J", "K", "L"]  # test
     print(choosen_letter)
 
-    combination = combine(choosen_letter, n, k,s)
-    select(combination, choosen_letter, j, s)
-    print("========final result===========")
-    print(combination)
-    print(len(combination))
+    combinations = combine(choosen_letter, n, k,s)
+    select(combinations, choosen_letter, j, s)
+
 
 if __name__ == '__main__':
-    search(45, 9, 6, 4, 4)
+    search(45, 12, 6, 6, 4)
     # search(45, 7, 6, 5, 5)
