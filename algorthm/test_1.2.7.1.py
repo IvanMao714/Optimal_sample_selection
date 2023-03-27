@@ -5,40 +5,20 @@ from utils import stack
 
 
 def combine(choosen_letter, n, k, s):
+    print(f"===========================Combine Function===============================")
     combination = []
-    head_combinations, tail_combinations=[],[]
-    # for x in range(n - k + 1):
-    print(f"==============")
-    # head_letters = choosen_letter[:n-k+x-1]
-    # head_combinations = list(itertools.combinations(head_letters, x))
-    # for head_combination in head_combinations:
-    # print("head_combination" + str(head_combinations))
+    print(f"--------------------------situation----------------------------")
     middle_letters = choosen_letter[:n-k+s]
     middle_combinations = list(itertools.combinations(middle_letters, s))
     tail_letters = choosen_letter[n-k+s:]
     tail_combinations = list(itertools.combinations(tail_letters, k-s))
-    # print(head_letters, middle_combinations, tail_combinations)
     print(middle_combinations, tail_combinations)
     for middle_combination in middle_combinations:
         for tail_combination in tail_combinations:
-            # print(list(tail_combination))
             temp = list(middle_combination) + list(tail_combination)
             print("temp"+str(temp))
             combination.append(list(middle_combination) + list(tail_combination))
-
-
-        # combination.append([head_combinations+list(middle_combination)+list(tail_combination) for middle_combination in middle_combinations for tail_combination in tail_combinations ])
-        # if len(head_letters) != 0:
-        #     head_combinations = list(itertools.combinations(head_letters, s-x+1))
-        # if len(tail_letters) != 0:
-        #     tail_combinations = list(itertools.combinations(tail_letters, k - s))
-        # print(list(head_combinations), list(tail_combinations))
-        # for tc in tail_combinations:
-        #     # temp = head_letters.append(tc)
-        #     combination.append(head_letters + middle_letters + list(tc))
-        # print(combination)
-        # t = t+1
-    print("========final combination===========")
+    print("---------------------------final combination-------------------------")
     print(combination)
     print(len(combination))
     return combination
@@ -49,8 +29,8 @@ def select(combinations, choosen_letter, j, s):
     valid_combinations = []
     tmp_sets = sample(choosen_letter, j)
     tmp_sets.sort()
-    tmp_sets = list(itertools.combinations(choosen_letter, j))
-    validation_sets = tuple(itertools.combinations(tmp_sets, s))
+    # tmp_sets = list(itertools.combinations(choosen_letter, j))
+    validation_sets = list(itertools.combinations(tmp_sets, s))
     print("-----------validation_sets----------")
     print(validation_sets)
     print(len(validation_sets))
@@ -85,21 +65,20 @@ def select(combinations, choosen_letter, j, s):
     print(valid_combinations)
     print(len(valid_combinations))
 
-
 def search(m, n, k, j, s):
     potential_letter = list(x for x in range(m))
     # choosen_letter = sample(potential_letter, n)
     # choosen_letter.sort()
 
     # choosen_letter = list(x for x in range(n)) # test
-    choosen_letter = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']  # test
+    choosen_letter = ['A', 'B', 'C', 'D', 'E', 'F', 'G', "H", "I", "J", 'K', 'L']  # test
     print(choosen_letter)
 
     combinations = combine(choosen_letter, n, k, s)
 
-    # select(combinations, choosen_letter, j, s)
+    select(combinations, choosen_letter, j, s)
 
 
 if __name__ == '__main__':
     # search(45, 10, 6, 6, 4)
-    search(45, 8, 6, 4, 4)
+    search(45, 12, 6, 6, 4)
