@@ -114,7 +114,7 @@ def search(m, n, k, j, s):
     # choosen_letter.sort()
 
     # choosen_letter = list(x for x in range(n)) # test
-    choosen_letter = ['A', 'B', 'C', 'D', 'E', 'F', 'G', "H"]  # test
+    choosen_letter = ['A', 'B', 'C', 'D', 'E', 'F', 'G']  # test
     print(choosen_letter)
 
     # combinations = combine(choosen_letter, n, k, s)
@@ -124,4 +124,4 @@ def search(m, n, k, j, s):
 
 if __name__ == '__main__':
     # search(45, 10, 6, 6, 4)
-    search(45, 8, 6, 4, 4)
+    search(45, 7, 6, 5, 5)
