@@ -87,7 +87,7 @@ def select(combinations, choosen_letter, j, s):
 def statistic(combinations, validation_sets):
     max_count = 0
     max_list = []
-    combinations.reverse()
+    # combinations.reverse()
     print("combinations_r:" + str(combinations))
     for combination in combinations:
         count = 0

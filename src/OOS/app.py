@@ -2,7 +2,7 @@
 My first application
 """
 import toga
-from toga.style.pack import COLUMN, LEFT, RIGHT, ROW, Pack,CENTER
+from toga.style.pack import COLUMN, LEFT, RIGHT, ROW, Pack, CENTER
 
 
 class OptimalSampleSelection(toga.App):
@@ -22,35 +22,35 @@ class OptimalSampleSelection(toga.App):
         m_box = toga.Box(style=Pack(padding_top=20, padding_right=20, padding_left=10, direction=ROW))
         m_value = toga.Label(
             "The values for parameters m (45<= m <=54): ",
-            style=Pack(font_family="cursive")
+            style=Pack(font_family="cursive",font_weight="bold")
         )
         self.m_input = toga.TextInput(style=Pack(flex=10, width=300))
 
         n_box = toga.Box(style=Pack(padding_top=20, padding_right=20, padding_left=10))
         n_value = toga.Label(
             "The values for parameters n (7<= n <=25):   ",
-            style=Pack(font_family="cursive")
+            style=Pack(font_family="cursive",font_weight="bold")
         )
         self.n_input = toga.TextInput(style=Pack(flex=10, width=300))
 
         k_box = toga.Box(style=Pack(padding_top=20, padding_right=20, padding_left=10))
         k_value = toga.Label(
             "The values for parameters k (4<= k <=7):     ",
-            style=Pack(font_family="cursive")
+            style=Pack(font_family="cursive",font_weight="bold")
         )
         self.k_input = toga.TextInput(style=Pack(flex=10, width=300))
 
         j_box = toga.Box(style=Pack(padding_top=20, padding_right=20, padding_left=10))
         j_value = toga.Label(
             "The values for parameters j (s<= j <=k):      ",
-            style=Pack(font_family="cursive")
+            style=Pack(font_family="cursive",font_weight="bold")
         )
         self.j_input = toga.TextInput(style=Pack(flex=10, width=300))
 
         s_box = toga.Box(style=Pack(padding_top=20, padding_right=20, padding_left=10,padding_bottom=20))
         s_value = toga.Label(
             "The values for parameters j (3<= s <=7):     ",
-            style=Pack(font_family="cursive")
+            style=Pack(font_family="cursive",font_weight="bold")
         )
         self.s_input = toga.TextInput(style=Pack(flex=10, width=300))
 
@@ -88,17 +88,17 @@ class OptimalSampleSelection(toga.App):
         button_box.add(button_rs)
         button_box.add(button_ss)
 
-        divider1 = toga.Divider()
-        divider2 = toga.Divider()
+        # divider1 = toga.Divider()
+        # divider2 = toga.Divider()
 
-        main_box.add(divider1)
+        # main_box.add(divider1)
         main_box.add(m_box)
         main_box.add(n_box)
         main_box.add(k_box)
         main_box.add(j_box)
         main_box.add(s_box)
         main_box.add(button_box)
-        main_box.add(divider2)
+        # main_box.add(divider2)
         main_box.add(output)
 
         # main_box.add(divider)

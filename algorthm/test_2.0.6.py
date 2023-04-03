@@ -2,7 +2,7 @@ import itertools
 from random import sample
 from random import choice
 from utils import stack
-
+import numpy as np
 
 def combine(choosen_letter, n, k, s):
     print(f"===========================Combine Function===============================")
@@ -25,29 +25,9 @@ def combine(choosen_letter, n, k, s):
     return combinations
 
 
-def select(combinations, choosen_letter, j, s):
+def select(combinations, validation_sets):
     print(f"===========================Select Function===============================")
     valid_combinations = []
-    # tmp_sets=[]
-    validation_sets = []
-    # tmp_sets = sample(choosen_letter, j)
-    # tmp_sets.sort()
-    # tmp_sets = itertools.combinations(choosen_letter, s)
-    tmp_sets = list(itertools.combinations(choosen_letter, j))
-    for tmp_set in tmp_sets:
-        small = list(itertools.combinations(tmp_set, s))
-        small.sort()
-        validation_sets.append(small[0])
-    print("final_validation_sets:"+str(validation_sets))
-    print("length:"+str(len(validation_sets)))
-    # print(tmp_sets)
-    # print(len(tmp_sets))
-    # for tmp_set in tmp_sets:
-    #     # print(itertools.combinations(tmp_set, s))
-    #     validation_sets = validation_sets + list(itertools.combinations(tmp_set, s))
-    #     # validation_sets = tuple(itertools.combinations(tmp_sets, s))
-    #     # print(validation_sets)
-
     print("-----------validation_sets----------")
     print(validation_sets)
     print(len(validation_sets))
@@ -90,7 +70,17 @@ def select(combinations, choosen_letter, j, s):
     print(valid_combinations)
     print(len(valid_combinations))
 
+def remove_duplicate_rows(arr):
+    unique_rows = []
+    seen = set()
 
+    for row in arr:
+        row_tuple = tuple(row)
+        if row_tuple not in seen:
+            seen.add(row_tuple)
+            unique_rows.append(list(row_tuple))
+
+    return unique_rows
 def satistic(combinations, validation_sets):
     max_count = 0
     max_list = []
@@ -121,17 +111,37 @@ def search(m, n, k, j, s):
     # choosen_letter.sort()
 
     # choosen_letter = list(x for x in range(n)) # test
-    choosen_letter = ['A', 'B', 'C', 'D', 'E', 'F', 'G', "H",'I', "J", 'K', 'L']  # test
+    choosen_letter = ['A', 'B', 'C', 'D', 'E', 'F', 'G', "H",'I', "J"]  # test
+    # choosen_letter = [1,2,3,4,5,6,7,8,9,10,11,12]
     print(choosen_letter)
-    # combinations = combine(choosen_letter, n, k, s)
+
     combinations = list(itertools.combinations(choosen_letter, k))
     print("combinations" + str(combinations))
     print("lens:" + str(len(combinations)))
-    select(combinations, choosen_letter, j, s)
+
+
+    validation_sets = []
+    tmp_sets = list(itertools.combinations(choosen_letter, j))
+    print("first_validation_sets:" + str(tmp_sets))
+    print("length:" + str(len(tmp_sets)))
+    for tmp_set in tmp_sets:
+        small =list((itertools.combinations(tmp_set, s)))
+        print(small)
+        small.sort()
+        length = len(small)//2
+        validation_sets.append(list(small[-1]))
+    # print("final_validation_sets:" + str(validation_sets))
+    # print("length:" + str(len(validation_sets)))
+    validation_sets = remove_duplicate_rows(validation_sets)
+    print("final_validation_sets:" + str(validation_sets))
+    print("length:" + str(len(validation_sets)))
+    # combinations = combine(choosen_letter, n, k, s)
+
+    select(combinations, validation_sets)
 
 
 
 if __name__ == '__main__':
     # search(45, 10, 6, 6, 4)
     #search(45, 9, 6, 4, 4)
-    search(45, 12, 6, 6, 4)
+    search(45, 10, 6, 6, 4)
