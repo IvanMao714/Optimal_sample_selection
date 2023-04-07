@@ -2,7 +2,8 @@
 My first application
 """
 import toga
-from toga.style.pack import COLUMN, LEFT, RIGHT, ROW, Pack, CENTER
+from toga.style.pack import COLUMN, ROW, Pack
+from . import algorithms
 
 
 class OptimalSampleSelection(toga.App):
@@ -54,7 +55,8 @@ class OptimalSampleSelection(toga.App):
         )
         self.s_input = toga.TextInput(style=Pack(flex=10, width=300))
 
-        output = toga.MultilineTextInput(style=Pack(padding_top=20, padding_right=10, padding_left=10, height=150))
+        output = toga.MultilineTextInput(style=Pack(padding_top=20, padding_right=10, padding_left=10, height=150),
+                                         readonly=True)
 
         m_box.add(m_value)
         m_box.add(self.m_input)
@@ -75,13 +77,13 @@ class OptimalSampleSelection(toga.App):
 
         button_rs = toga.Button(
             "Random Selection",
-            on_press=self.say_hello,
+            on_press=self.random_selection,
             style=Pack(padding=5, flex=100)
         )
 
         button_ss = toga.Button(
             "Specified Selection",
-            on_press=self.say_hello,
+            on_press=self.random_selection,
             style=Pack(padding=5, flex=100)
         )
 
@@ -110,8 +112,16 @@ class OptimalSampleSelection(toga.App):
         self.main_window.content = main_box
         self.main_window.show()
 
-    def say_hello(self, widget):
-        print(f"Hello, {self.m_input.value}")
+    def random_selection(self,widget):
+        m = int(self.m_input.value)
+        n = int(self.n_input.value)
+        k = int(self.k_input.value)
+        j = int(self.j_input.value)
+        s = int(self.s_input.value)
+        # results = "111"
+        results = algorithms.search(m, n, k, j, s)
+        # print(results)
+        self.output.value = str(results)
 
 
 def main():
