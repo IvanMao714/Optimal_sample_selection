@@ -22,6 +22,7 @@ test_sources = [
 ]
 
 requires = [
+    "pymongo",
 ]
 test_requires = [
     "pytest",

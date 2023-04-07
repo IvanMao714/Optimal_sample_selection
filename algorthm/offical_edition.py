@@ -1,7 +1,6 @@
 import itertools
 from random import sample
-
-from utils import stack
+from typing import List
 
 
 def combine(choosen_letter, n, k, s):
@@ -25,88 +24,79 @@ def combine(choosen_letter, n, k, s):
     return combinations
 
 
-def select(combinations,validation_sets):
-    print(f"===========================Select Function===============================")
-
+def select(combinations: list, validation_sets: list) -> list:
+    """
+    Selects valid combinations from a list of combinations based on a list of validation sets.
+    :param combinations: A list of combinations to be validated.
+    :param validation_sets: A list of validation sets to validate the combinations against.
+    :return: A list of valid combinations.
+    """
     valid_combinations = []
 
     while (len(validation_sets) != 0):
-        combination = satistic(combinations,validation_sets)
-        print(str(combinations))
-        # print(combination)
-        # combinations = combinations.remove(combination)
-        print("combination:" + str(combination))
+        combination = statistic(combinations, validation_sets)
+        flag = 0
         for validation_set in validation_sets:
-            print("validation_set:" + str(validation_set))
             if set(validation_set).issubset(set(combination)):
-                print("-------------------------")
                 flag = 1
 
         validation_sets = [s for s in validation_sets if not set(s).issubset(set(combination))]
         if flag == 1:
             valid_combinations.append(combination)
             combinations.remove(combination)
-            print("^^^^^^^^^^^^")
-            print("Add combination" + str(combination))
-        print("num of combinations:" + str(len(combinations)))
-        print("num of validation_sets:" + str(len(validation_sets)))
-        print("num of valid_combinations:" + str(len(valid_combinations)))
-    print("---------------------result--------------------------")
+
     print(valid_combinations)
     print(len(valid_combinations))
     return valid_combinations
 
 
-def satistic(combinations,validation_sets):
+def statistic(combinations: list, validation_sets: list) -> list:
+    """
+    Finds the combination that satisfies the most validation sets.
+    :param combinations: A list of combinations to be validated.
+    :param validation_sets: A list of validation sets to validate the combinations against.
+    :return: The combination that satisfies the most validation sets.
+    """
     max_count = 0
     max_list = []
-    # combinations.reverse()
-    print("combinations_r:" + str(combinations))
     for combination in combinations:
         count = 0
-        # for combination in combinations:
         for validation_set in validation_sets:
             if set(validation_set).issubset(set(combination)):
-                # print("-------------------------")
                 count += 1
         if count > max_count:
             max_count = count
             max_list = combination
-        # weight.update({combination: count})
-        if count != 0:
-            print("combination:" + str(combination) + ",count:"+str(count))
-
-    # weight = sorted(weight, key=lambda x:x[0])
-
-    print("weight:" + str(max_count))
     return max_list
 
-def satistic_reverse(combinations, validation_sets):
+
+def statistic_reverse(combinations: list, validation_sets: list) -> list:
+    """
+    Finds the validation set that satisfies the most combinations.
+    :param combinations: A list of combinations to be validated.
+    :param validation_sets: A list of validation sets to validate the combinations against.
+    :return: The validation set that satisfies the most combinations.
+    """
     max_count = 0
     max_list = []
-    # combinations.reverse()
-    # print("combinations_r:" + str(combinations))
     for validation_set in validation_sets:
-
         count = 0
-        # for combination in combinations:
         for combination in combinations:
             if set(validation_set).issubset(set(combination)):
-                # print("-------------------------")
                 combinations.remove(combination)
                 count += 1
         if count > max_count:
             max_count = count
             max_list = validation_set
-        # weight.update({combination: count})
-        # print("combination:" + str(combination) + ",count:"+str(count))
-
-    # weight = sorted(weight, key=lambda x:x[0])
-    # combinations.remove(max_list)
-    # print("weight:" + str(max_count))
     return max_list
 
-def remove_duplicate_rows(arr):
+
+def remove_duplicate_rows(arr: List[List[int]]) -> List[List[int]]:
+    """
+    Removes duplicate rows from a 2D list of integers.
+    :param arr: The 2D list of integers to remove duplicates from.
+    :return: A new 2D list with duplicate rows removed.
+    """
     unique_rows = []
     seen = set()
 
@@ -119,48 +109,32 @@ def remove_duplicate_rows(arr):
     return unique_rows
 
 
-
 def search(m, n, k, j, s):
+    potential_letter = list(x for x in range(1, m + 1))
+    chosen_letter = sample(potential_letter, n)
+    chosen_letter.sort()
+
+    combinations = list(itertools.combinations(chosen_letter, k))
 
     validation_sets = []
-    potential_letter = list(x for x in range(1,m+1))
-    print(potential_letter)
-    choosen_letter = sample(potential_letter, n)
-    choosen_letter.sort()
+    tmp_sets = list(itertools.combinations(chosen_letter, j))
+    if j == s:
+        result = select(combinations, tmp_sets)
+    else:
+        for tmp_set in tmp_sets:
+            small = list((itertools.combinations(tmp_set, s)))
+            small.sort()
+            d = statistic_reverse(tmp_sets, small)
+            validation_sets.append(d)
+        validation_sets = remove_duplicate_rows(validation_sets)
 
-    # choosen_letter = list(x for x in range(n)) # test
-    # choosen_letter = ['A', 'B', 'C', 'D', 'E', 'F', 'G', "H", 'I', "J", 'K', 'L']  # test
-    print(choosen_letter)
-    # validation_sets = list(itertools.combinations(choosen_letter, s))
 
-    print("--------combinations----")
-    # combinations = combine(choosen_letter, n, k, s)
-    combinations = list(itertools.combinations(choosen_letter, k))
-    # combination_first = list(itertools.combinations(choosen_letter, j))
-    # validation_sets = select(combination_first, validation_sets)
-
-    print("-----------validation_sets----------")
-    validation_sets = []
-    tmp_sets = list(itertools.combinations(choosen_letter, j))
-    print("first_validation_sets:" + str(tmp_sets))
-    print("length:" + str(len(tmp_sets)))
-    for tmp_set in tmp_sets:
-        small = list((itertools.combinations(tmp_set, s)))
-        print(small)
-        small.sort()
-        length = len(small) // 2
-        d = satistic_reverse(tmp_sets, small)
-        validation_sets.append(d)
-    # print("final_validation_sets:" + str(validation_sets))
-    # print("length:" + str(len(validation_sets)))
-    validation_sets = remove_duplicate_rows(validation_sets)
-    print("final_validation_sets:" + str(validation_sets))
-    print("length:" + str(len(validation_sets)))
-
-    select(combinations, validation_sets)
+        result = select(combinations, validation_sets)
+    return result
 
 
 if __name__ == '__main__':
     # search(45, 10, 6, 6, 4)
     # search(45, 9, 6, 4, 4)
     search(45, 10, 6, 6, 4)
+    search(45, 7, 6, 5, 5)
