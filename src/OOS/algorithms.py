@@ -45,8 +45,8 @@ def select(combinations: list, validation_sets: list) -> list:
             valid_combinations.append(combination)
             combinations.remove(combination)
 
-    print(valid_combinations)
-    print(len(valid_combinations))
+    # print(valid_combinations)
+    # print(len(valid_combinations))
     return valid_combinations
 
 
@@ -128,7 +128,6 @@ def search(m, n, k, j, s):
             validation_sets.append(d)
         validation_sets = remove_duplicate_rows(validation_sets)
 
-
         result = select(combinations, validation_sets)
     return result
 
@@ -136,5 +135,6 @@ def search(m, n, k, j, s):
 if __name__ == '__main__':
     # search(45, 10, 6, 6, 4)
     # search(45, 9, 6, 4, 4)
-    search(45, 10, 6, 6, 4)
-    search(45, 7, 6, 5, 5)
+    # search(45, 17, 6, 6, 4)
+    res = search(45, 25, 6, 5, 5)
+    print(res)

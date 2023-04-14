@@ -1,19 +1,10 @@
-"""
-My first application
-"""
+import random
 import toga
 from toga.style.pack import COLUMN, ROW, Pack
 from . import algorithms
 
 
 class OptimalSampleSelection(toga.App):
-
-    # def startup(self):
-    #     main_box = toga.Box()
-
-    #     self.main_window = toga.MainWindow(title=self.formal_name)
-    #     self.main_window.content = main_box
-    #     self.main_window.show()
 
     def startup(self):
         main_box = toga.Box(style=Pack(direction=COLUMN))
@@ -112,7 +103,25 @@ class OptimalSampleSelection(toga.App):
         self.main_window.content = main_box
         self.main_window.show()
 
-    def random_selection(self,widget):
+    def random_selection(self, widget):
+        print("Random Selection")
+        # m = int(self.m_input.value)
+        # n = int(self.n_input.value)
+        # k = int(self.k_input.value)
+        # j = int(self.j_input.value)
+        # s = int(self.s_input.value)
+        m = random.randint(45, 54)
+        n = random.randint(7, 10)
+        k = random.randint(4, 7)
+        s = random.randint(3, k)
+        j = random.randint(s, k)
+        print(m, n, k, j, s)
+        # self.output.value = str(m,n,k,j,s)
+        results = algorithms.search(m, n, k, j, s)
+        # print(results)
+        self.output.value = results
+
+    def specified_selection(self, widget):
         m = int(self.m_input.value)
         n = int(self.n_input.value)
         k = int(self.k_input.value)
@@ -122,6 +131,12 @@ class OptimalSampleSelection(toga.App):
         results = algorithms.search(m, n, k, j, s)
         # print(results)
         self.output.value = str(results)
+
+    def greeting(name):
+        if name:
+            return f"Hello, {name}"
+        else:
+            return "Hello, stranger"
 
 
 def main():
