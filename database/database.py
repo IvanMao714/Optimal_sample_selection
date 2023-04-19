@@ -2,11 +2,12 @@ import pymongo
 
 
 def insert_one(input, output, database):
-    try:
-        input_data = {"input": input, "output": output}
-        database.insert_one(input_data)
-    except:
-        return "The data had been inserted into the database."
+    input_data = {"input": input}
+    count = database.count_documents(input_data)
+    print(count)
+    input_data["count"] = count
+    input_data["output"] = output
+    database.insert_one(input_data)
     return "The data has been inserted into the database successfully."
 
 
@@ -28,7 +29,7 @@ def find_one(input, database):
 
 def delete_one(input, database):
     try:
-        database.dete_one({"input": input})
+        database.delete_one({"input": input})
         return "Delete successfully."
     except:
         return "Delete failed."
@@ -38,6 +39,7 @@ if __name__ == '__main__':
     myclient = pymongo.MongoClient("mongodb://8.219.62.112:27017/")
     mydb = myclient["OSS"]
     mycol = mydb["data"]
+    # insert_one("6-7-8-10", "out", mycol)
+    delete_one("6-7-8-10", mycol)
     print(find_all(mycol))
-    insert_one("6-7-8-9", "output", mycol)
-    print(find_one("6-7-8-9", mycol))
+    # print(find_one("6-7-8-9", mycol))

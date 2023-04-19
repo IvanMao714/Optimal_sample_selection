@@ -1,0 +1,93 @@
+<SelectPage>:
+    canvas.before:
+        Color:
+            rgba: [1,1,1,1]
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: './static/index.jpg'
+    BoxLayout:
+        size_hint: (0.8,.15)
+        pos_hint: {"center_x":0.5,"y":0.8}
+        Label:
+            text: 'The values for parameters m (45<= m <=54): '
+            color: kivy.utils.get_color_from_hex('#0081CF')
+            font_size: 18  #18
+            pos_hint: {"x":0,"center_y":0.5}
+            markup: True
+        TextInput:
+            size_hint: (0.2,0.3)
+            pos_hint:{"x":-1, "center_y":0.5}
+    BoxLayout:
+        size_hint: (0.8,.15)
+        pos_hint: {"center_x":0.5,"y":0.7}
+        Label:
+            text: 'The values for parameters n (7<= n <=25):'
+            color: kivy.utils.get_color_from_hex('#0081CF')
+            font_size: 18  #18
+            pos_hint: {"x":0,"center_y":0.5}
+            markup: True
+        TextInput:
+            size_hint: (0.2,0.3)
+            pos_hint:{"x":-1, "center_y":0.5}
+    BoxLayout:
+        size_hint: (0.8,.15)
+        pos_hint: {"center_x":0.5,"y":0.6}
+        Label:
+            text: 'The values for parameters k (4<= k <=7):'
+            color: kivy.utils.get_color_from_hex('#0081CF')
+            font_size: 18  #18
+            pos_hint: {"x":1,"center_y":0.5}
+            markup: True
+        TextInput:
+            size_hint: (0.2,0.3)
+            pos_hint:{"x":-1, "center_y":0.5}
+    BoxLayout:
+        size_hint: (0.8,.15)
+        pos_hint: {"center_x":0.5,"y":0.5}
+        Label:
+            text: 'The values for parameters j (s<= j <=k):'
+            color: kivy.utils.get_color_from_hex('#0081CF')
+            font_size: 18  #18
+            pos_hint: {"x":1,"center_y":0.5}
+            markup: True
+        TextInput:
+            size_hint: (0.2,0.3)
+            pos_hint:{"x":-1, "center_y":0.5}
+    BoxLayout:
+        size_hint: (0.8,.15)
+        pos_hint: {"center_x":0.5,"y":0.4}
+        Label:
+            text: 'The values for parameters j (3<= s <=7):'
+            color: kivy.utils.get_color_from_hex('#0081CF')
+            font_size: 18  #18
+            pos_hint: {"x":1,"center_y":0.5}
+            markup: True
+        TextInput:
+            size_hint: (0.2,0.3)
+            pos_hint:{"x":-1, "center_y":0.5}
+    BoxLayout:
+        spacing: 30
+        size_hint: (0.8,.1)
+        pos_hint: {"center_x":0.5,"y":0.2}
+        Button:
+            text: "[b]Random Select[/b]"
+            markup: True
+            on_press:root.page_select()
+
+        Button:
+            text: "[b]Specified Select[/b]"
+            markup: True
+            on_release: root.page_preferences()
+    Button:
+        size_hint: (0.8,.05)
+        pos_hint: {"center_x":0.5,"y":0.1}
+        text: "[b]Back to Index[/b]"
+        markup: True
+        on_release: root.page_index()
+    Button:
+        size_hint: (0.8,.05)
+        pos_hint: {"center_x":0.5,"y":0.04}
+        text: "[b]Database[/b]"
+        markup: True
+        on_release: root.page_database()

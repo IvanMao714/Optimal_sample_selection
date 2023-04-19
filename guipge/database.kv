@@ -1,0 +1,31 @@
+<DatabasePage>:
+    canvas.before:
+        Color:
+            rgba: [1,1,1,1]
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: './static/index.jpg'
+    BoxLayout:
+        size_hint: (0.8,.15)
+        pos_hint: {"center_x":0.5,"y":0.4}
+        orientation: 'horizontal'
+        Label:
+            text: 'The values for parameters j (3<= s <=7):'
+            color: kivy.utils.get_color_from_hex('#0081CF')
+            font_size: 18  #18
+            pos_hint: {"x":1,"center_y":0.5}
+            markup: True
+        TextInput:
+            size_hint: (0.2,0.3)
+            pos_hint:{"x":-1, "center_y":0.5}
+
+
+    BoxLayout:
+        spacing: 30
+        size_hint: (0.8,.1)
+        pos_hint: {"center_x":0.5,"y":0.2}
+        Button:
+            text: "[b]Random Select[/b]"
+            markup: True
+            on_press:root.page_select()
