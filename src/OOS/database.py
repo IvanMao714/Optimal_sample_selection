@@ -38,5 +38,6 @@ if __name__ == '__main__':
     myclient = pymongo.MongoClient("mongodb://8.219.62.112:27017/")
     mydb = myclient["OSS"]
     mycol = mydb["data"]
-    # insert_one("6-7-8-9", "output", mycol)
+    print(find_all(mycol))
+    insert_one("6-7-8-9", "output", mycol)
     print(find_one("6-7-8-9", mycol))
