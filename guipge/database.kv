@@ -6,26 +6,116 @@
             pos: self.pos
             size: self.size
             source: './static/index.jpg'
+
     BoxLayout:
-        size_hint: (0.8,.15)
-        pos_hint: {"center_x":0.5,"y":0.4}
         orientation: 'horizontal'
-        Label:
-            text: 'The values for parameters j (3<= s <=7):'
-            color: kivy.utils.get_color_from_hex('#0081CF')
-            font_size: 18  #18
-            pos_hint: {"x":1,"center_y":0.5}
-            markup: True
-        TextInput:
-            size_hint: (0.2,0.3)
-            pos_hint:{"x":-1, "center_y":0.5}
-
+        size_hint: (0.8,0.05)
+        pos_hint: {"center_x":0.5,"y":0.8}
+        BoxLayout:
+            size_hint: (0.5,1)
+            orientation: 'horizontal'
+            Label:
+                text: "m:"
+                font_size: 15
+                color: [0,0,0,1]
+                size_hint: (0.5,1)
+            TextInput:
+                size_hint: (0.5,1)
+        BoxLayout:
+            size_hint: (0.5,1)
+            orientation: 'horizontal'
+            Label:
+                text: "n:"
+                font_size: 15
+                color: [0,0,0,1]
+                size_hint: (0.5,1)
+            TextInput:
+                size_hint: (0.5,1)
+        BoxLayout:
+            size_hint: (0.5,1)
+            orientation: 'horizontal'
+            Label:
+                size_hint: (0.5,1)
+                text: "k:"
+                font_size: 15
+                color: [0,0,0,1]
+            TextInput:
+                size_hint: (0.5,1)
 
     BoxLayout:
-        spacing: 30
+        orientation: 'horizontal'
+        size_hint: (0.8,0.05)
+        pos_hint: {"center_x":0.5,"y":0.725}
+        BoxLayout:
+            size_hint: (0.5,1)
+            orientation: 'horizontal'
+            Label:
+                text: "j:"
+                font_size: 15
+                color: [0,0,0,1]
+                size_hint: (0.5,1)
+            TextInput:
+                size_hint: (0.5,1)
+        BoxLayout:
+            size_hint: (0.5,1)
+            orientation: 'horizontal'
+            Label:
+                text: "s:"
+                font_size: 15
+                color: [0,0,0,1]
+                size_hint: (0.5,1)
+            TextInput:
+                size_hint: (0.5,1)
+        BoxLayout:
+            size_hint: (0.5,1)
+            orientation: 'horizontal'
+            Label:
+                size_hint: (0.5,1)
+                text: "times:"
+                font_size: 15
+                color: [0,0,0,1]
+            TextInput:
+                size_hint: (0.5,1)
+
+    BoxLayout:
+        orientation: 'vertical'
         size_hint: (0.8,.1)
-        pos_hint: {"center_x":0.5,"y":0.2}
+        pos_hint: {"center_x":0.5,"y":0.6}
+        BoxLayout:
+            Button:
+                text: "[b]Display Database Data[/b]"
+                markup: True
+                on_release: root.page_index()
+            Button:
+                text: "[b]Delete Database Data[/b]"
+                markup: True
+                on_release: root.page_select()
         Button:
-            text: "[b]Random Select[/b]"
+            text: "[b]Download Database File[/b]"
             markup: True
-            on_press:root.page_select()
+            on_release: root.page_select()
+
+
+    ScrollView:
+        do_scroll_x: False
+        do_scroll_y: True
+        pos_hint: {"center_x":0.5,"y":0.2}
+        size_hint: (0.8,.35)
+        TextInput:
+            id: text_input
+            # text: root.text
+            multiline: True
+            readonly: True
+
+    Button:
+        size_hint: (0.8,.05)
+        pos_hint: {"center_x":0.5,"y":0.1}
+        text: "[b]Back to Index[/b]"
+        markup: True
+        on_release: root.page_index()
+    Button:
+        size_hint: (0.8,.05)
+        pos_hint: {"center_x":0.5,"y":0.04}
+        text: "[b]Back to Select[/b]"
+        markup: True
+        on_release: root.page_select()

@@ -23,11 +23,12 @@ class Oss(App):
 
         self.load_kv("guipge/index.kv")  # create a index.kv file
         self.load_kv("guipge/select.kv")  # create a image.kv file
+        self.load_kv("guipge/database.kv")  # create a image.kv file
 
         self.screen_manager = ScreenManager()
         Window.size = (667, 667)
         # pages = {"Index_page": IndexPage(), "Database_page": DatabasePage()}
-        pages = {"Index_page": IndexPage(), "Select_page": SelectPage(self.config)}
+        pages = {"Index_page": IndexPage(), "Select_page": SelectPage(self.config), "Database_page": DatabasePage(self.config)}
 
         for item, page in pages.items():
             self.default_page = page

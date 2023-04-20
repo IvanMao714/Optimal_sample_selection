@@ -11,3 +11,8 @@ class DatabasePage(FloatLayout):
     def page_index(*args):
         App.get_running_app().screen_manager.current = "Index_page"
         App.get_running_app().screen_manager.transition.direction = 'right'
+
+    @staticmethod
+    def page_select(*args):
+        App.get_running_app().screen_manager.current = "Select_page"
+        App.get_running_app().screen_manager.transition.direction = 'left'
