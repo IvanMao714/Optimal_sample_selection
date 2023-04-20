@@ -20,6 +20,7 @@
                 color: [0,0,0,1]
                 size_hint: (0.5,1)
             TextInput:
+                id: m_input
                 size_hint: (0.5,1)
         BoxLayout:
             size_hint: (0.5,1)
@@ -30,6 +31,7 @@
                 color: [0,0,0,1]
                 size_hint: (0.5,1)
             TextInput:
+                id: n_input
                 size_hint: (0.5,1)
         BoxLayout:
             size_hint: (0.5,1)
@@ -40,6 +42,7 @@
                 font_size: 15
                 color: [0,0,0,1]
             TextInput:
+                id: k_input
                 size_hint: (0.5,1)
 
     BoxLayout:
@@ -55,6 +58,7 @@
                 color: [0,0,0,1]
                 size_hint: (0.5,1)
             TextInput:
+                id: j_input
                 size_hint: (0.5,1)
         BoxLayout:
             size_hint: (0.5,1)
@@ -65,6 +69,7 @@
                 color: [0,0,0,1]
                 size_hint: (0.5,1)
             TextInput:
+                id: s_input
                 size_hint: (0.5,1)
         BoxLayout:
             size_hint: (0.5,1)
@@ -75,6 +80,7 @@
                 font_size: 15
                 color: [0,0,0,1]
             TextInput:
+                id: times_input
                 size_hint: (0.5,1)
 
     BoxLayout:
@@ -85,15 +91,15 @@
             Button:
                 text: "[b]Display Database Data[/b]"
                 markup: True
-                on_release: root.page_index()
+                on_release: text_input.text = root.query_specified_data(m_input.text,n_input.text,k_input.text,j_input.text,s_input.text,times_input.text)
             Button:
                 text: "[b]Delete Database Data[/b]"
                 markup: True
-                on_release: root.page_select()
+                on_release: text_input.text = root.delete_specified_data(m_input.text,n_input.text,k_input.text,j_input.text,s_input.text,times_input.text)
         Button:
             text: "[b]Download Database File[/b]"
             markup: True
-            on_release: root.page_select()
+            on_release: root.show_load()
 
 
     ScrollView:
@@ -119,3 +125,34 @@
         text: "[b]Back to Select[/b]"
         markup: True
         on_release: root.page_select()
+
+<DownloadDialog>:
+    BoxLayout:
+        size: root.size
+        pos: root.pos
+        orientation: "vertical"
+        FileChooserIconView:
+            id: filechooser
+            rootpath: root.cwdir
+            filters: ["*.mzw"]
+            on_selection: text_input.text = self.selection and self.selection[0] or ''
+            dirselect: True
+
+        TextInput:
+            id: text_input
+            size_hint_y: .1
+            multiline: False
+
+
+        BoxLayout:
+            size_hint_y: .1
+            spacing: 30
+            Button:
+                text: "[b]Conform[/b]"
+                on_release: root.load(filechooser.path,filechooser.selection)
+                markup: True
+
+            Button:
+                text: "[b]Cancel[/b]"
+                on_release: root.cancel()
+                markup: True
