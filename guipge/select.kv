@@ -73,7 +73,7 @@
         Button:
             text: "[b]Random Select[/b]"
             markup: True
-            on_press:root.page_select()
+            on_press: root.random_select()
 
         Button:
             text: "[b]Specified Select[/b]"
@@ -91,3 +91,45 @@
         text: "[b]Database[/b]"
         markup: True
         on_release: root.page_database()
+
+<SelectDialog>:
+    BoxLayout:
+        spacing: 30
+        size_hint: (0.9,0.9)
+        pos_hint: {"center_x":0.5,"center_y":0.5}
+        size: root.size
+        pos: root.pos
+        orientation: "vertical"
+
+        Label:
+            size_hint: (0.5,1)
+            text: root.input
+            font_size: 15
+            color: [1,1,1,1]
+            markup: True
+            size_hint: (1,.1)
+
+        TextInput:
+            text: ''
+            size_hint: (1,.8)
+            id: result_output
+            multiline: True
+
+        Button:
+            size_hint: (1,.1)
+            text: "[b]Run algorithms[/b]"
+            on_release: result_output.text = root.run_algorithms()
+            markup: True
+
+        BoxLayout:
+            size_hint: (1,.1)
+            spacing: 30
+            Button:
+                text: "[b]Import to Database[/b]"
+                on_release: result_output.text = root.import_database()
+                markup: True
+
+            Button:
+                text: "[b]Cancel[/b]"
+                on_release: root.cancel()
+                markup: True

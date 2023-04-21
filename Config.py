@@ -5,3 +5,4 @@ class Config():
         self.k = 4
         self.j = 3
         self.s = 3
+        self.result = ''
