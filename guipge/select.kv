@@ -16,6 +16,7 @@
             pos_hint: {"x":0,"center_y":0.5}
             markup: True
         TextInput:
+            id: m
             size_hint: (0.2,0.3)
             pos_hint:{"x":-1, "center_y":0.5}
     BoxLayout:
@@ -28,6 +29,7 @@
             pos_hint: {"x":0,"center_y":0.5}
             markup: True
         TextInput:
+            id: n
             size_hint: (0.2,0.3)
             pos_hint:{"x":-1, "center_y":0.5}
     BoxLayout:
@@ -40,6 +42,7 @@
             pos_hint: {"x":1,"center_y":0.5}
             markup: True
         TextInput:
+            id: k
             size_hint: (0.2,0.3)
             pos_hint:{"x":-1, "center_y":0.5}
     BoxLayout:
@@ -52,6 +55,7 @@
             pos_hint: {"x":1,"center_y":0.5}
             markup: True
         TextInput:
+            id: j
             size_hint: (0.2,0.3)
             pos_hint:{"x":-1, "center_y":0.5}
     BoxLayout:
@@ -64,6 +68,7 @@
             pos_hint: {"x":1,"center_y":0.5}
             markup: True
         TextInput:
+            id: s
             size_hint: (0.2,0.3)
             pos_hint:{"x":-1, "center_y":0.5}
     BoxLayout:
@@ -78,7 +83,7 @@
         Button:
             text: "[b]Specified Select[/b]"
             markup: True
-            on_release: root.page_preferences()
+            on_release: root.specified_select(m.text,n.text,k.text,j.text,s.text)
     Button:
         size_hint: (0.8,.05)
         pos_hint: {"center_x":0.5,"y":0.1}

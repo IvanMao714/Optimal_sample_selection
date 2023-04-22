@@ -34,6 +34,13 @@ class SelectPage(FloatLayout):
         self.selectdialog_load(self.config.m, self.config.n, self.config.k, self.config.j, self.config.s)
 
         # content.ids.result.text = self.config.result
+    def specified_select(self, m, n, k, j, s):
+        self.config.m = int(m)
+        self.config.n = int(n)
+        self.config.k = int(k)
+        self.config.j = int(j)
+        self.config.s = int(s)
+        self.selectdialog_load(self.config.m, self.config.n, self.config.k, self.config.j, self.config.s)
 
     def selectdialog_load(self, m, n, k, j, s):
         input = "The input is: m = " + str(m) + ", n = " + str(n) + ", k = " + str(k) + \
