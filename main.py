@@ -11,6 +11,7 @@ from DatabasePage import DatabasePage
 from IndexPage import IndexPage
 from SelectPage import SelectPage
 
+import win32timezone
 
 class Oss(App):
     def __init__(self, config, **kwargs):
