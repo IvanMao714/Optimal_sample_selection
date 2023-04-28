@@ -10,9 +10,12 @@
   </a>
 </p>
 
-<img src=".\static\logo.png" style="zoom:76%;" />
 
-
+<p align="center">
+  <a href="./">
+    <img width=10% src="./static/logo.png">
+  </a>
+</p>
 
 
 ## Introduction
