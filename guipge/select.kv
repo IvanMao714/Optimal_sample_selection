@@ -1,0 +1,173 @@
+<SelectPage>:
+    canvas.before:
+        Color:
+            rgba: [1,1,1,1]
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    BoxLayout:
+        size_hint: (0.8,.15)
+        pos_hint: {"center_x":0.5,"y":0.8}
+        Label:
+            text: 'The values for parameters m (45<= m <=54): '
+            color: kivy.utils.get_color_from_hex('#000451')
+            font_size: 18  #18
+            pos_hint: {"x":0,"center_y":0.5}
+            markup: True
+        TextInput:
+            id: m
+            size_hint: (0.2,0.3)
+            pos_hint:{"x":-1, "center_y":0.5}
+    BoxLayout:
+        size_hint: (0.8,.15)
+        pos_hint: {"center_x":0.5,"y":0.7}
+        Label:
+            text: 'The values for parameters n (7<= n <=25):'
+            color: kivy.utils.get_color_from_hex('#000451')
+            font_size: 18  #18
+            pos_hint: {"x":0,"center_y":0.5}
+            markup: True
+        TextInput:
+            id: n
+            size_hint: (0.2,0.3)
+            pos_hint:{"x":-1, "center_y":0.5}
+    BoxLayout:
+        size_hint: (0.8,.15)
+        pos_hint: {"center_x":0.5,"y":0.6}
+        Label:
+            text: 'The values for parameters k (4<= k <=7):'
+            color: kivy.utils.get_color_from_hex('#000451')
+            font_size: 18  #18
+            pos_hint: {"x":1,"center_y":0.5}
+            markup: True
+        TextInput:
+            id: k
+            size_hint: (0.2,0.3)
+            pos_hint:{"x":-1, "center_y":0.5}
+    BoxLayout:
+        size_hint: (0.8,.15)
+        pos_hint: {"center_x":0.5,"y":0.5}
+        Label:
+            text: 'The values for parameters j (s<= j <=k):'
+            color: kivy.utils.get_color_from_hex('#000451')
+            font_size: 18  #18
+            pos_hint: {"x":1,"center_y":0.5}
+            markup: True
+        TextInput:
+            id: j
+            size_hint: (0.2,0.3)
+            pos_hint:{"x":-1, "center_y":0.5}
+    BoxLayout:
+        size_hint: (0.8,.15)
+        pos_hint: {"center_x":0.5,"y":0.4}
+        Label:
+            text: 'The values for parameters j (3<= s <=7):'
+            color: kivy.utils.get_color_from_hex('#000451')
+            font_size: 18  #18
+            pos_hint: {"x":1,"center_y":0.5}
+            markup: True
+        TextInput:
+            id: s
+            size_hint: (0.2,0.3)
+            pos_hint:{"x":-1, "center_y":0.5}
+
+    BoxLayout:
+        size_hint: (0.8,.15)
+        pos_hint: {"center_x":0.5,"y":0.3}
+        Label:
+            text: 'Parameters n :'
+            color: kivy.utils.get_color_from_hex('#000451')
+            font_size: 18  #18
+            pos_hint: {"x":0,"center_y":0.5}
+            markup: True
+        TextInput:
+            id: n_content
+            size_hint: (0.8,0.3)
+            pos_hint:{"x":-1, "center_y":0.5}
+
+    BoxLayout:
+        spacing: 30
+        size_hint: (0.8,.1)
+        pos_hint: {"center_x":0.5,"y":0.2}
+        Button:
+            text: "[b]Random Select[/b]"
+            markup: True
+            on_press: root.random_select(m.text,n.text,k.text,j.text,s.text)
+
+        Button:
+            text: "[b]Specified Select[/b]"
+            markup: True
+            on_release: root.specified_select(m.text,k.text,j.text,s.text,n_content.text)
+    Button:
+        size_hint: (0.8,.05)
+        pos_hint: {"center_x":0.5,"y":0.1}
+        text: "[b]Back to Index[/b]"
+        markup: True
+        on_release: root.page_index()
+    Button:
+        size_hint: (0.8,.05)
+        pos_hint: {"center_x":0.5,"y":0.04}
+        text: "[b]Database[/b]"
+        markup: True
+        on_release: root.page_database()
+
+<SelectDialog>:
+    BoxLayout:
+        spacing: 30
+        size_hint: (0.9,0.9)
+        pos_hint: {"center_x":0.5,"center_y":0.5}
+        size: root.size
+        pos: root.pos
+        orientation: "vertical"
+
+        Label:
+            size_hint: (0.5,1)
+            text: root.input
+            font_size: 15
+            color: [1,1,1,1]
+            markup: True
+            size_hint: (1,.1)
+
+        TextInput:
+            text: ''
+            size_hint: (1,.8)
+            id: result_output
+            multiline: True
+
+        Button:
+            size_hint: (1,.1)
+            text: "[b]Run algorithms[/b]"
+            on_press: result_output.text = "Please Waiting!!!"
+            on_release: result_output.text = root.run_algorithms()
+            markup: True
+
+        BoxLayout:
+            size_hint: (1,.1)
+            spacing: 30
+            Button:
+                text: "[b]Import to Database[/b]"
+                on_release: result_output.text = root.import_database()
+                markup: True
+
+            Button:
+                text: "[b]Cancel[/b]"
+                on_release: root.cancel()
+                markup: True
+
+<DataDialog>:
+    BoxLayout:
+        spacing: 30
+        size_hint: (0.9,0.9)
+        pos_hint: {"center_x":0.5,"center_y":0.5}
+        size: root.size
+        pos: root.pos
+        orientation: "vertical"
+
+        Label:
+            size_hint: (0.5,1)
+            text: "Waiting !!!"
+            font_size: 15
+            color: [1,1,1,1]
+            markup: True
+            size_hint: (1,.1)
