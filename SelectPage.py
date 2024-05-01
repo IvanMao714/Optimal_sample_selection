@@ -6,7 +6,7 @@ from kivy.uix.popup import Popup
 
 from Dialog import SelectDialog
 
-from algorithms.offical_edition import search
+from algorithms.algorithms import search
 
 
 class SelectPage(FloatLayout):
