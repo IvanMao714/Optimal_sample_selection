@@ -28,11 +28,13 @@ class SelectDialog(FloatLayout):
         # except:
         self.ids.result_output.text = "Waiting!!!"
         self.config.result = search(self.config.n, self.config.k, self.config.j, self.config.s)
+        self.config.n_length = len(self.config.n)
         return self.config.result
 
     def import_database(self):
-        input_format = str(self.config.m) + "-" + str(self.config.n) + "-" + \
+        input_format = str(self.config.m) + "-" + str(self.config.n_length) + "-" + \
                        str(self.config.k) + "-" + str(self.config.j) + "-" + str(self.config.s)
+        print(input_format)
         database = Database()
         database.insert_one(input_format, self.config.result)
         return "Upload Successfully!!!!"

@@ -6,3 +6,4 @@ class Config():
         self.j = 3
         self.s = 3
         self.result = ''
+        self.n_length = 0

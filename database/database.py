@@ -3,7 +3,7 @@ import pymongo
 
 class Database:
     def __init__(self):
-        self.myclient = pymongo.MongoClient("Your Serever")
+        self.myclient = pymongo.MongoClient("mongodb://8.219.62.112:27017/")
         self.mydb = self.myclient["OSS"]
         self.mycol = self.mydb["data"]
 

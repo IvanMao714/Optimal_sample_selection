@@ -28,6 +28,7 @@ class DatabasePage(FloatLayout):
         format_data = self.format_data(m, n, k, j, s)
         output = self.database.find_many(format_data)
         format_output = self.format_output(output)
+        # print(format_output)
         return format_output
 
     def delete_specified_data(self, m, n, k, j, s, times):
